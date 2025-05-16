@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h1 style="margin-bottom: 2rem">Feedback & Reviews</h1>
+
+<div class="review-layout">
+  <!-- Customer Reviews -->
+  <div class="review-column">
+    <h2>What People Are Saying</h2>
+    <ul class="review-list">
+      <li>⭐️⭐️⭐️⭐️⭐️ “The dosas are amazing and full of flavor!”</li>
+      <li>⭐️⭐️⭐️⭐️ “Loved the Madurai Kari Dosa. Will be back!”</li>
+      <li>⭐️⭐️⭐️⭐️⭐️ “Felt just like home. Warm staff and great food.”</li>
+      <li>⭐️⭐️⭐️⭐️ “Samosa chaat was 🔥!”</li>
+    </ul>
+  </div>
+
+  <!-- Feedback Form -->
+  <div class="feedback-column">
+    <h2>Leave Us Your Feedback</h2>
+
+    {% if submitted %}
+      <p style="font-size: 1.2rem; color: var(--highlight-color); margin-top: 2rem;">
+        ✅ Thank you for your feedback! We appreciate you taking the time to help us improve.
+      </p>
+    {% else %}
+      <form method="POST" action="{{ url_for('form') }}">
+        <label>Name:</label>
+        <input type="text" name="name" required />
+
+        <label>Email:</label>
+        <input type="email" name="email" required />
+
+        <label>Favorite Dish:</label>
+        <input type="text" name="dish" />
+
+        <label>Your Feedback:</label>
+        <textarea name="message" rows="5" required></textarea>
+
+        <button type="submit">Submit</button>
+      </form>
+    {% endif %}
+  </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,77 @@
+{% extends "base.html" %} {% block content %}
+
+<!-- HERO SECTION -->
+<div class="home-banner">
+  <img
+    src="{{ url_for('static', filename='images/HomeBanner.png') }}"
+    alt="Home Indian Food Banner"
+  />
+</div>
+<section class="intro-section">
+  <h2>Welcome to The South</h2>
+  <p>
+    Experience the essence of South Indian cuisine in Tempe, Arizona. Our dishes
+    are crafted with the perfect blend of spices and tradition, offering both
+    vegetarian and non-vegetarian options to tantalize your taste buds.
+  </p>
+</section>
+
+<hr class="section-divider" />
+
+<section class="info-section">
+  <h2>Our Commitment</h2>
+  <p>
+    We prioritize your wellness by providing food with zero additives, cooked
+    using wood-pressed peanut oil and fresh, natural ingredients.
+  </p>
+</section>
+
+<hr class="section-divider" />
+
+<section class="info-section">
+  <h2>Chef's Corner</h2>
+  <p>
+    Our master chef, with over 20 years of experience in Indian cuisine, is
+    dedicated to delivering a palatable experience to all Indian food
+    enthusiasts.
+  </p>
+</section>
+
+<hr class="section-divider" />
+<!-- POPULAR DISHES -->
+<section class="info-section" style="margin-top: 2.5rem">
+  <h2>Popular Dishes</h2>
+  <div class="popular-dishes">
+    <div class="dish-card">
+      <h3>Madurai Kari Dosa</h3>
+      <p>
+        A regional delicacy — three-layered dosa with omelette and minced meat.
+      </p>
+      <img
+        src="{{ url_for('static', filename='images/MaduraiKariDosa.png') }}"
+        alt="Madurai Kari Dosa"
+      />
+    </div>
+    <div class="dish-card">
+      <h3>Veechu Parotta</h3>
+      <p>
+        Flaky, crispy flatbread served with a rich, flavorful kurma, bursting
+        with spices.
+      </p>
+      <img
+        src="{{ url_for('static', filename='images/VeechuParrota.png') }}"
+        alt="Veechu Parotta"
+      />
+    </div>
+    <div class="dish-card">
+      <h3>Kal Dosa</h3>
+      <p>Soft, spongy, and wholesome — the comfort food of South India.</p>
+      <img
+        src="{{ url_for('static', filename='images/KalDosa.png') }}"
+        alt="Kal Dosa"
+      />
+    </div>
+  </div>
+</section>
+
+{% endblock %}

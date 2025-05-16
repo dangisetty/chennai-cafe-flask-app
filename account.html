@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block content %}
+
+<main class="account-page">
+  <section class="account-section">
+    <h1 class="order-title">Welcome Back</h1>
+    <p class="order-desc">Below is your account info and order history.</p>
+
+    <!-- Account Info -->
+    {% if account_info %}
+    <div class="account-info">
+      <p><strong>Name:</strong> {{ account_info.username }}</p>
+      <p><strong>Email:</strong> {{ account_info.email }}</p>
+      <p><strong>Phone:</strong> {{ account_info.phone }}</p>
+    </div>
+    {% endif %}
+
+    <!-- Order History -->
+    <div class="order-history">
+      <h2 class="order-title">Order History</h2>
+      {% if orders %}
+        <ul>
+          {% for order in orders %}
+            <li>{{ order.item }} (x{{ order.quantity }}) — Notes: {{ order.notes or 'None' }}</li>
+          {% endfor %}
+        </ul>
+      {% else %}
+        <p>You haven't placed any orders yet.</p>
+      {% endif %}
+    </div>
+
+    <a href="{{ url_for('logout') }}" style="color: var(--highlight-color);">Log Out</a>
+  </section>
+</main>
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+    <ul class="flashes">
+      {% for category, message in messages %}
+        <li class="{{ category }}">{{ message }}</li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
+
+{% endblock %}

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Chennai Cafe</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/styles.css') }}"
+    />
+  </head>
+  <body>
+    <nav>
+      <ul class="nav-list">
+        <li><a href="{{ url_for('home') }}">Home</a></li>
+        <li><a href="{{ url_for('products') }}">Menu</a></li>
+        <li><a href="{{ url_for('form') }}">Feedback</a></li>
+        <li><a href="{{ url_for('order') }}">Order Online</a></li>
+
+        {% if session.user_email %}
+          <li><a href="{{ url_for('account') }}">Account</a></li>
+        {% else %}
+          <li><a href="{{ url_for('login') }}">Login</a></li>
+          <li><a href="{{ url_for('create_account') }}">Create Account</a></li>
+        {% endif %}
+      </ul>
+    </nav>
+
+    <main>
+      <!-- Flash messages block -->
+      {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+          <div class="flashes">
+            {% for category, message in messages %}
+              <div class="flash-popup flash-{{ category }}">{{ message }}</div>
+            {% endfor %}
+          </div>
+          <script>
+            const flashMessages = document.querySelectorAll(".flash-popup");
+            flashMessages.forEach(flash => {
+              setTimeout(() => {
+                flash.style.opacity = "0";
+                setTimeout(() => flash.remove(), 600);
+              }, 3000);
+            });
+          </script>
+        {% endif %}
+      {% endwith %}
+
+      {% block content %}{% endblock %}
+    </main>
+
+    <footer>
+      <p>Chennai Cafe - Created by Dhanyalakshmi Angisetty</p>
+    </footer>
+  </body>
+</html>

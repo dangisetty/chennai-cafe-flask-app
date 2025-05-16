@@ -1,0 +1,99 @@
+{% extends "base.html" %}
+{% block content %}
+
+<!-- Full-width Menu Banner -->
+<div class="menu-banner">
+  <img src="{{ url_for('static', filename='images/Banner2.png') }}" alt="Indian Food Banner" />
+</div>
+
+<!-- Search Bar with Clear Option -->
+<form method="get" action="{{ url_for('products') }}" class="menu-search" style="margin-bottom: 1rem;">
+  <input type="text" name="search" placeholder="Search menu items..." value="{{ search_term }}">
+  <button type="submit">Search</button>
+  {% if search_term %}
+    <a href="{{ url_for('products') }}" style="margin-left: 10px; color: #f4ce14;">Clear</a>
+  {% endif %}
+</form>
+
+<!-- Search Results Section -->
+{% if search_term %}
+  {% if products %}
+    <h2 style="margin-top: 2rem">Search Results</h2>
+    <table style="width: 100%; border-collapse: collapse; margin-top: 1rem">
+      <tr>
+        <th style="text-align: left; border-bottom: 2px solid var(--accent-color); padding: 0.5rem;">Name</th>
+        <th style="text-align: left; border-bottom: 2px solid var(--accent-color); padding: 0.5rem;">Description</th>
+        <th style="text-align: left; border-bottom: 2px solid var(--accent-color); padding: 0.5rem;">Price</th>
+        <th style="text-align: left; border-bottom: 2px solid var(--accent-color); padding: 0.5rem;">Quantity</th>
+      </tr>
+      {% for item in products %}
+      <tr>
+        <td style="padding: 0.5rem;">{{ item['name'] }}</td>
+        <td style="padding: 0.5rem;">{{ item['description'] }}</td>
+        <td style="padding: 0.5rem;">${{ item['price'] }}</td>
+        <td style="padding: 0.5rem;">{{ item['quantity'] }}</td>
+      </tr>
+      {% endfor %}
+    </table>
+  {% else %}
+    <p>No results found for "<strong>{{ search_term }}</strong>".</p>
+  {% endif %}
+{% endif %}
+
+<!-- Full Menu Display (only when not searching) -->
+{% if not search_term %}
+
+<h2>Soups</h2>
+<ul>
+  <li><strong>Rasam</strong> – Traditional South Indian spicy tamarind soup – $4.99</li>
+  <li><strong>Kozhi Rasam</strong> – Spicy chicken soup with herbs – $6.99</li>
+  <li><strong>Sweet Corn Soup</strong> – Veg-based thick corn soup – $5.99</li>
+</ul>
+
+<h2>Appetizers</h2>
+<ul>
+  <li><strong>Vegetable Samosa</strong> – Stuffed with potato and peas – $5.49</li>
+  <li><strong>Medhu Vada</strong> – Fried savory lentil donuts – $5.00</li>
+  <li><strong>Chicken 65</strong> – Spicy deep-fried chicken bites – $10.99</li>
+  <li><strong>Paneer 65</strong> – Fried paneer cubes with chili seasoning – $10.99</li>
+</ul>
+
+<h2>Dosas</h2>
+<ul>
+  <li><strong>Sada Dosa</strong> – Plain rice crepe – $9.99</li>
+  <li><strong>Masala Dosa</strong> – Filled with spiced potato – $11.99</li>
+  <li><strong>Mysore Masala Dosa</strong> – Red chutney spread and potato masala – $12.99</li>
+  <li><strong>Onion Rava Dosa</strong> – Crispy dosa with onions and semolina – $12.99</li>
+  <li><strong>Ghee Roast Dosa</strong> – Rich dosa with clarified butter – $12.99</li>
+  <li><strong>Madurai Kari Dosa</strong> – Layered dosa with egg and minced meat – $14.99</li>
+</ul>
+
+<h2>Parotta Specials</h2>
+<ul>
+  <li><strong>Veechu Parotta</strong> – Served with kurma – $7.99</li>
+  <li><strong>Kothu Parotta (Veg)</strong> – Chopped parotta tossed with veggies & spices – $12.99</li>
+  <li><strong>Kothu Parotta (Chicken)</strong> – With chicken & spicy gravy – $14.99</li>
+</ul>
+
+<h2>Thali Platters</h2>
+<ul>
+  <li><strong>Veg Thali</strong> – Includes roti, curries, rice, and dessert – $18.99</li>
+  <li><strong>Non-Veg Thali</strong> – With chicken and mutton curries, rice, and dessert – $19.99</li>
+</ul>
+
+<h2>Chaat & Street Snacks</h2>
+<ul>
+  <li><strong>Pani Puri</strong> – Crispy shells filled with flavored water – $6.99</li>
+  <li><strong>Samosa Chaat</strong> – Crushed samosas with yogurt and chutneys – $7.99</li>
+</ul>
+
+<h2>Drinks</h2>
+<ul>
+  <li><strong>Madras Filter Coffee</strong> – Authentic South Indian style – $3.99</li>
+  <li><strong>Mango Lassi</strong> – Sweet yogurt mango drink – $4.99</li>
+  <li><strong>Masala Chai</strong> – Spiced Indian tea – $2.99</li>
+</ul>
+
+{% endif %}
+
+{% endblock %}
